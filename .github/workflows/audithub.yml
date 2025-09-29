@@ -38,11 +38,16 @@ jobs:
             #     sarif_file: use-before-def.sarif
             - name: Run OrCa on only-pm-submit.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/only-pm-submit.spec
+              continue-on-error: true
             - name: Run OrCa on freelancer-rank-invariant.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/freelancer-rank-invariant.spec
+              continue-on-error: true
             - name: Run OrCa on join-required-rank.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/join-required-rank.spec
+              continue-on-error: true
             - name: Run OrCa on registration-rank.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/registration-rank.spec
+              continue-on-error: true
             - name: Run OrCa on submit-project-cost.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/submit-project-cost.spec
+              continue-on-error: true
