@@ -243,7 +243,7 @@ contract Marketplace {
     }
 
     function collectPayment(uint256 _id) public {
-        _statusMatches(_id, Status.COMPLETED);
+        require(_statusMatches(_id, Status.COMPLETED));
         require(
             projects[_id].freelancer == msg.sender ||
             projects[_id].mediator == msg.sender ||
