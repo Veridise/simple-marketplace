@@ -7,9 +7,11 @@ SPECS=${@:2}
 
 EXIT_CODE=0
 
+VERSION_ID=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION:0:7}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
+
 for SPEC in ${SPECS}
 do
-  ./ah-scripts/run-orca-with-spec.sh ${REVISION} ${SPEC}
+  ./ah-scripts/run-orca-with-spec.sh ${REVISION} ${VERSION_ID} ${SPEC}
 
   if (($? != 0)); then
     echo "OrCa found counterexample for spec: ${SPEC}"

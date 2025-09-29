@@ -3,12 +3,12 @@
 set -ex
 
 REVISION=$1
-SPEC=$2
+VERSION_ID=$2
+SPEC=$3
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
 
-version_id=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION:0:7}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
-task_id=$(ah start-orca-task --version-id ${version_id} --timeout 60 --embedded-specs ${SPEC})
+task_id=$(ah start-orca-task --version-id ${VERSION_ID} --timeout 60 --embedded-specs ${SPEC})
 ah monitor-task --task-id $task_id
 
 task_info_json=$(ah get-task-info --task-id $task_id | grep -v "^+")
