@@ -24,6 +24,16 @@ jobs:
                 python-version: "3.12"
             - name: Install AuditHub client
               run: pip install audithub-client
+            - name: Run DeFi Vanguard
+              run: ./ah-scripts/run-vanguard.sh ${{ github.sha }}
+            - name: Upload SARIF file
+              uses: github/codeql-action/upload-sarif@v3
+              with:
+                sarif-file: unchecked-return.sarif
+            - name: Upload SARIF file
+              uses: github/codeql-action/upload-sarif@v3
+              with:
+                sarif-file: use-before-def.sarif
             - name: Run OrCa on only-pm-submit.spec
               run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/only-pm-submit.spec
             - name: Run OrCa on freelancer-rank-invariant.spec
