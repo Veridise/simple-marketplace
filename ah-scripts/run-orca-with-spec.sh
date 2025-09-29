@@ -7,7 +7,7 @@ SPEC=$2
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
 
-version_id=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
+version_id=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION:0:7}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
 task_id=$(ah start-orca-task --version-id ${version_id} --timeout 60 --embedded-specs ${SPEC})
 ah monitor-task --task-id $task_id
 

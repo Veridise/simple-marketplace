@@ -6,7 +6,7 @@ REVISION=$1
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
 
-version_id=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
+version_id=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION:0:7}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
 task_id=$(ah start-defi-vanguard-task --version-id ${version_id} --detector unchecked-return use-before-def)
 ah monitor-task --task-id $task_id
 
