@@ -24,4 +24,4 @@ jobs:
             - name: Install AuditHub client
               run: pip install audithub-client
             - name: Run OrCa on only-pm-submit.spec
-              run: .github/scripts/run-orca-with-spec.sh ${{ github.sha }} specs/only-pm-submit.spec
+              run: bash ./ah-scripts/run-orca-with-spec.sh ${{ github.sha }} specs/only-pm-submit.spec
