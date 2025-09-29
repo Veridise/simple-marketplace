@@ -7,6 +7,7 @@ SPECS=${@:2}
 
 EXIT_CODE=0
 
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
 VERSION_ID=$(ah create-version-via-url --name "@ga-${TIMESTAMP}-${REVISION:0:7}" --input-type git --url https://github.com/Veridise/simple-marketplace.git --revision $REVISION)
 
 for SPEC in ${SPECS}

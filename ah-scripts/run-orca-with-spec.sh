@@ -6,8 +6,6 @@ REVISION=$1
 VERSION_ID=$2
 SPEC=$3
 
-TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")
-
 task_id=$(ah start-orca-task --version-id ${VERSION_ID} --timeout 60 --embedded-specs ${SPEC})
 ah monitor-task --task-id $task_id
 
