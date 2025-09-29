@@ -1,0 +1,27 @@
+name: AuditHub integration
+
+on:
+    push:
+        branches: [main]
+    pull_request: 
+        branches: [main]
+
+env:
+    AUDITHUB_BASE_URL: ${{ secrets.AUDITHUB_BASE_URL }}
+    AUDITHUB_OIDC_CONFIGURATION_URL: ${{ secrets.AUDITHUB_OIDC_CONFIGURATION_URL }}
+    AUDITHUB_OIDC_CLIENT_ID: ${{ secrets.AUDITHUB_OIDC_CLIENT_ID }}
+    AUDITHUB_OIDC_CLIENT_SECRET: ${{ secrets.AUDITHUB_OIDC_CLIENT_SECRET }}
+    AUDITHUB_ORGANIZATION_ID: ${{ secrets.AUDITHUB_ORGANIZATION_ID }}
+
+jobs:
+    run-ah-checks:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v4
+              with:
+                python-version: "3.12"
+            - name: Install AuditHub client
+              run: pip install audithub-client
+            - name: Run OrCa on only-pm-submit.spec
+              run: .github/scripts/run-orca-with-spec.sh ${{ github.sha }} specs/only-pm-submit.spec
