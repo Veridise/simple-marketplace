@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 REVISION=$1
 SPECS=${@:2}
 

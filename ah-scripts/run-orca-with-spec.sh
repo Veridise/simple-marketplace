@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 REVISION=$1
 VERSION_ID=$2

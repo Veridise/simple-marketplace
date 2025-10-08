@@ -31,10 +31,5 @@ jobs:
               uses: github/codeql-action/upload-sarif@v3
               with:
                 sarif_file: unchecked-return.sarif
-            # Commenting this out as there is an issue with the emitted sarif.
-            # - name: Upload use-before-def results
-            #   uses: github/codeql-action/upload-sarif@v3
-            #   with:
-            #     sarif_file: use-before-def.sarif
             - name: Run OrCa
               run: bash ./ah-scripts/run-orca-on-all-specs.sh ${{ github.sha }} specs/only-pm-submit.spec specs/freelancer-rank-invariant.spec specs/join-required-rank.spec specs/registration-rank.spec
