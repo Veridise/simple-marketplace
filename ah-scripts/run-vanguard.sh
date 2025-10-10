@@ -17,7 +17,7 @@ mapfile -t detector_steps < <(echo "$task_info_json" | jq -r '.steps[] | select(
 for detector_step in "${detector_steps[@]}"; do
     # remove any funny characters from the step code to make sure we can preserve a file in the current directory
     sarif_file_name="./${detector_step//[^A-Za-z0-9._-]/_}.sarif"
-    ah download-artifact --task-id $task_id --step-code "$detector_step" --name sarif.json --output-file "$sarif_file_name" --log-level ERROR
+    ah download-artifact --task-id $task_id --step-code "$detector_step" --name sarif.json --output-file "$sarif_file_name"
     detector_name=$(jq -r '.runs[0].tool.driver.rules[0].id' "$sarif_file_name")
     mv "$sarif_file_name" "./$detector_name.sarif"
 done
